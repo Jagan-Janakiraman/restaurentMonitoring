@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Monitoring</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+
+</head>
+<body>
+    <h1>Welcome to Restaurant Monitoring</h1>
+    <p>This is the default page for the Restaurant Monitoring application.</p>
+    <p>Use the provided APIs to trigger report generation and retrieve the reports.</p>
+    <h1>Restaurant Monitoring</h1>
+
+    <h2>Generate Report</h2>
+    <form action="/trigger_report" method="post">
+        <input type="submit" value="Generate Report">
+    </form>
+
+    <h2>Check Database Connection</h2>
+    <form action="/check_db_connection" method="get">
+        <input type="submit" value="Check Database Connection">
+    </form>
+    
+
+    <h2>Trigger Report generation</h2>
+    <form action="/trigger_report" method="get">
+        <input type="submit" value="Trigger report generation">
+    </form>
+
+
+
+    <h2>Status of Report generated</h2>
+    <form action="/get_report" method="get">
+        <input type="submit" value="report status ">
+    </form>
+
+
+</body>
+</html>
