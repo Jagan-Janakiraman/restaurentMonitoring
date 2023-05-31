@@ -13,7 +13,6 @@ pip install mysql-connector-python
 # use
 Set-ExecutionPolicy Unrestricted -Scope Process
 python app.py
-
-       //not a comment         
+ 
 
         
