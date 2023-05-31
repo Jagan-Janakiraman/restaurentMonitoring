@@ -31,6 +31,7 @@ def index():
     return render_template('index.html')
 
 # To check the database connection
+# To check the database connection
 @app.route('/check_db_connection', methods=['GET'])
 def check_db_connection():
     try:
@@ -38,14 +39,16 @@ def check_db_connection():
         if connection is None:
             return jsonify(status="Error", message="Failed to connect to the database")
 
+        connected_database = db_config['database']
         cursor = connection.cursor()
-        cursor.execute("SHOW DATABASES")
-        databases = [db[0] for db in cursor.fetchall()]
+        cursor.execute("SHOW TABLES")
+        tables = [table[0] for table in cursor.fetchall()]
         cursor.close()
         connection.close()
-        return jsonify(status="Connected", databases=databases)
+        return jsonify(status="Connected", database=connected_database, tables=tables)
     except pymysql.Error as e:
         return jsonify(status="Error", message=str(e))
+
 
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -62,7 +65,6 @@ class BusinessHours(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     store_id = db.Column(db.Integer, nullable=False)
     day = db.Column(db.Integer, nullable=False)
-    store_status = db.Column(db.String(50), nullable=False)
     start_time_local = db.Column(db.DateTime, default=datetime.utcnow)
     end_time_local = db.Column(db.DateTime, default=datetime.utcnow)
 
