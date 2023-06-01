@@ -1,0 +1,40 @@
+#  Initial Application setup from scratch
+py -3 -m venv .venv
+.venv\Scripts\activate
+pip install Flask
+pip install Flask pandas pytz
+pip install pymysql
+pip install mysql-connector-python
+pip install flask_sqlalchemy
+pip install flask_migrate
+
+
+
+# To start the Application
+.venv\Scripts\activate     # make sure venv is activated
+# if  it doesnt load because running scripts is disabled on this system 
+# use
+Set-ExecutionPolicy Unrestricted -Scope Process
+python app.py
+
+
+# To run db migrations
+flask db init
+flask db migrate
+flask db upgrade
+
+#git commands 
+git clone #ssh link here
+git status  # to check the status
+git diff # to see the differnce 
+git add . # to add all modified or untraced files to staging
+git add (file_name) # to add particular file_name
+git commit -m "message here" # to commit the code in staging area
+git push # push the code to repository
+git checkout (branch_name) #checkout to exsisting branch
+git checkout -b (branch_name) # create a new branch and checkout
+
+
+ 
+
+        
