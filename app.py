@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 import pymysql
 from datetime import datetime
 import pytz
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost:3306/restaurent_monitor'
@@ -43,7 +44,7 @@ def check_db_connection():
         if connection is None:
             return jsonify(status="Error", message="Failed to connect to the database")
 
-        connected_database = connection.database
+        connected_database = db_config['database']  # Retrieve the database name from the db_config dictionary
         cursor = connection.cursor()
         cursor.execute("SHOW TABLES")
         table_names = [table[0] for table in cursor.fetchall()]
@@ -69,7 +70,9 @@ def add_report():
     
     if not all([store_id, uptime_last_hour, uptime_last_day, uptime_last_week, downtime_last_hour, downtime_last_day, downtime_last_week]):
         return jsonify({'error': 'Missing required data'}), 400
-    
+    # Generate a random integer between 1 and 10
+    report_id = random.randint(10000, 1000000)
+    print(report_id)
     report = Report(
         store_id=store_id,
         uptime_last_hour=uptime_last_hour,
@@ -83,7 +86,33 @@ def add_report():
     db.session.add(report)
     db.session.commit()
     
-    return jsonify({'message': 'Report added successfully'}), 201
+    return jsonify({'message': 'Report added successfully' , 'report_id':report_id}), 201
+
+@app.route('/get_report/<report_id>', methods=['GET'])
+def get_report(report_id):
+    try:
+        report_by_id = Report.query.filter_by(id=report_id).first()        
+        if report_by_id:
+            report = {
+            'report_id': report_by_id.id,
+            'store_id' : report_by_id.store_id, 
+            'uptime_last_hour': report_by_id.uptime_last_hour, 
+            'uptime_last_day': report_by_id.uptime_last_week, 
+            'update_last_week' : report_by_id.uptime_last_week, 
+            'downtime_last_hour' : report_by_id.downtime_last_hour, 
+            'downtime_last_day' : report_by_id.downtime_last_day, 
+            'downtime_last_week': report_by_id.downtime_last_week
+            }
+            return jsonify({'message': 'Complete', 'report' : report
+                            }), 201
+
+        else:
+            return jsonify({'message': 'Report generating'}), 201
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 404
+
+        
 
 
 

@@ -5,6 +5,9 @@ pip install Flask
 pip install Flask pandas pytz
 pip install pymysql
 pip install mysql-connector-python
+pip install flask_sqlalchemy
+pip install flask_migrate
+
 
 
 # To start the Application
@@ -19,6 +22,18 @@ python app.py
 flask db init
 flask db migrate
 flask db upgrade
+
+#git commands 
+git clone #ssh link here
+git status  # to check the status
+git diff # to see the differnce 
+git add . # to add all modified or untraced files to staging
+git add (file_name) # to add particular file_name
+git commit -m "message here" # to commit the code in staging area
+git push # push the code to repository
+git checkout (branch_name) #checkout to exsisting branch
+git checkout -b (branch_name) # create a new branch and checkout
+
 
  
 
