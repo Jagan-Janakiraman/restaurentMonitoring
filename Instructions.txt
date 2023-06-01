@@ -17,7 +17,8 @@ python app.py
 
 # To run db migrations
 flask db init
-flask db migrate -m "Initial migration"
+flask db migrate
+flask db upgrade
 
  
 

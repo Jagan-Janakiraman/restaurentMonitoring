@@ -8652,3 +8652,13 @@ __pycache__/models.cpython-311.pyc
 .venv/Scripts/f2py.exe
 .venv/Scripts/flask.exe
 .venv/Scripts/mako-render.exe
+migrations/versions/01544978aa2e_migration_initial.py
+migrations/versions/__pycache__/01544978aa2e_migration_initial.cpython-311.pyc
+migrations/versions/01544978aa2e_migration_initial.py
+migrations/versions/__pycache__/01544978aa2e_migration_initial.cpython-311.pyc
+migrations/versions/f75c47ee7ac9_.py
+migrations/versions/__pycache__/f75c47ee7ac9_.cpython-311.pyc
+migrations/versions/f75c47ee7ac9_.py
+migrations/versions/__pycache__/f75c47ee7ac9_.cpython-311.pyc
+migrations/versions/f75c47ee7ac9_.py
+migrations/versions/__pycache__/f75c47ee7ac9_.cpython-311.pyc

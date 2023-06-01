@@ -54,10 +54,50 @@ def check_db_connection():
         return jsonify(status="Error", message=str(e))
 
 
+# To add data to report database
+@app.route('/reports', methods=['POST'])
+def add_report():
+    data = request.json
+    
+    store_id = data.get('store_id')
+    uptime_last_hour = data.get('uptime_last_hour')
+    uptime_last_day = data.get('uptime_last_day')
+    uptime_last_week = data.get('uptime_last_week')
+    downtime_last_hour = data.get('downtime_last_hour')
+    downtime_last_day = data.get('downtime_last_day')
+    downtime_last_week = data.get('downtime_last_week')
+    
+    if not all([store_id, uptime_last_hour, uptime_last_day, uptime_last_week, downtime_last_hour, downtime_last_day, downtime_last_week]):
+        return jsonify({'error': 'Missing required data'}), 400
+    
+    report = Report(
+        store_id=store_id,
+        uptime_last_hour=uptime_last_hour,
+        uptime_last_day=uptime_last_day,
+        uptime_last_week=uptime_last_week,
+        downtime_last_hour=downtime_last_hour,
+        downtime_last_day=downtime_last_day,
+        downtime_last_week=downtime_last_week
+    )
+    
+    db.session.add(report)
+    db.session.commit()
+    
+    return jsonify({'message': 'Report added successfully'}), 201
+
+
+
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     store_id = db.Column(db.Integer, nullable=False)
-    # Other columns and model definitions
+    uptime_last_hour = db.Column(db.Integer, nullable=False, default=0)
+    uptime_last_day = db.Column(db.Integer, nullable=False, default=0)
+    uptime_last_week = db.Column(db.Integer, nullable=False, default=0)
+    downtime_last_hour = db.Column(db.Integer, nullable=False, default=0)
+    downtime_last_day = db.Column(db.Integer, nullable=False, default=0)
+    downtime_last_week = db.Column(db.Integer, nullable=False, default=0)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
 
 
 class StoreStatus(db.Model):
