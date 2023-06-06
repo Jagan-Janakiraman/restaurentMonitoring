@@ -8662,3 +8662,9 @@ migrations/versions/f75c47ee7ac9_.py
 migrations/versions/__pycache__/f75c47ee7ac9_.cpython-311.pyc
 migrations/versions/f75c47ee7ac9_.py
 migrations/versions/__pycache__/f75c47ee7ac9_.cpython-311.pyc
+migrations/versions/4fc70db7df52_.py
+migrations/versions/5d8007438e51_.py
+migrations/versions/eb1f3de63a0f_.py
+migrations/versions/__pycache__/4fc70db7df52_.cpython-311.pyc
+migrations/versions/__pycache__/5d8007438e51_.cpython-311.pyc
+migrations/versions/__pycache__/eb1f3de63a0f_.cpython-311.pyc
